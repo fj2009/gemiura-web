@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Gemiura">
+  <title>Gemiura</title>
+  <defs>
+    <linearGradient id="gU" x1="8" y1="6" x2="112" y2="116" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F6B050"/>
+      <stop offset="0.48" stop-color="#FC6B00"/>
+      <stop offset="1" stop-color="#241F21"/>
+    </linearGradient>
+    <linearGradient id="gUbrillo" x1="20" y1="10" x2="96" y2="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sello: escudo redondeado -->
+  <path fill="url(#gU)" d="M60 4 L107 21 C113 23 117 29 117 36 V70 C117 90 96 108 60 116
+                          C24 108 3 90 3 70 V36 C3 29 7 23 13 21 Z"/>
+  <path fill="url(#gUbrillo)" d="M60 4 L107 21 C113 23 117 29 117 36 V70 C117 90 96 108 60 116
+                          C24 108 3 90 3 70 V36 C3 29 7 23 13 21 Z"/>
+
+  <!-- Marca de verificación: lo medible se demuestra -->
+  <path fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"
+        stroke-linejoin="round" d="M31 62 L50 80 L89 40"/>
+
+  <!-- Nodo de verificación: el punto que se enciende al medir -->
+  <circle cx="89" cy="40" r="16" fill="#241F21" opacity="0.16"/>
+  <circle cx="89" cy="40" r="9.5" fill="#ffffff"/>
+  <circle cx="89" cy="40" r="4" fill="#F6EFE6"/>
+</svg>

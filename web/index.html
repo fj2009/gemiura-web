@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemiura — Infraestructura digital, datos y ciberseguridad</title>
+  <meta name="description" content="Gemiura diseña, monta y mantiene la infraestructura digital de su organización: servidores, redes, bases de datos, videovigilancia y software a medida, con herramientas de seguridad propias.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <meta name="theme-color" content="#f6efe6">
+  <script>
+    (() => {
+      try {
+        const guardado = localStorage.getItem('gemiura-tema');
+        const pedido = new URLSearchParams(location.search).get('tema');
+        const oscuro = pedido === 'oscuro' || (pedido !== 'claro' && guardado === 'oscuro');
+        if (oscuro) {
+          document.documentElement.dataset.tema = 'oscuro';
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#171415');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Gemiura">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Gemiura — Infraestructura digital, datos y ciberseguridad">
+  <meta property="og:description" content="Servidores, redes, bases de datos, videovigilancia y software a medida, con herramientas de seguridad propias y estado declarado sin adornos.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Gemiura — Infraestructura digital, datos y ciberseguridad">
+  <meta name="twitter:description" content="Servidores, redes, bases de datos, videovigilancia y software a medida, con herramientas de seguridad propias y estado declarado sin adornos.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Gemiura",
+    "email": "gemiurasolution@gmail.com",
+    "description": "Infraestructura digital, bases de datos, redes, videovigilancia, formación técnica y software a medida, con herramientas de ciberseguridad propias."
+  }
+  </script>
+  <link rel="preload" href="assets/fonts/darkergrotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/jetbrainsmono-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <div class="progreso" aria-hidden="true"><span id="barra-progreso"></span></div>
+
+  <header class="nav" id="nav">
+    <a class="nav__marca" href="#inicio" aria-label="Gemiura, inicio">
+      <svg class="nav__escudo" viewBox="0 0 120 120" width="30" height="30" aria-hidden="true">
+        <defs>
+          <linearGradient id="gN" x1="8" y1="6" x2="112" y2="116" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#F6B050"/><stop offset="0.48" stop-color="#FC6B00"/><stop offset="1" stop-color="#241F21"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#gN)" d="M60 4 L107 21 C113 23 117 29 117 36 V70 C117 90 96 108 60 116 C24 108 3 90 3 70 V36 C3 29 7 23 13 21 Z"/>
+        <path fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" d="M31 62 L50 80 L89 40"/>
+        <circle cx="89" cy="40" r="9.5" fill="#fff"/><circle cx="89" cy="40" r="4" fill="#F6EFE6"/>
+      </svg>
+      <span>Gemiura</span>
+    </a>
+    <nav class="nav__enlaces" aria-label="Principal">
+      <a href="#servicios" data-seccion="servicios">Servicios</a>
+      <a href="#plataforma" data-seccion="plataforma">Plataforma</a>
+      <a href="#colaboraciones" data-seccion="colaboraciones">Colaboraciones</a>
+      <a href="#planes" data-seccion="planes">Planes</a>
+      <a href="#metodo" data-seccion="metodo">Método</a>
+      <a href="#contacto" data-seccion="contacto">Contacto</a>
+    </nav>
+    <button class="tema" id="tema-btn" type="button" aria-label="Modo oscuro"
+      aria-pressed="false" title="Activar modo oscuro" hidden>
+      <svg class="tema__icono tema__icono--luna" viewBox="0 0 24 24" width="16" height="16"
+        fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <path d="M20.5 14.1A8.5 8.5 0 0 1 9.9 3.5 8.5 8.5 0 1 0 20.5 14.1Z"/>
+      </svg>
+      <svg class="tema__icono tema__icono--sol" viewBox="0 0 24 24" width="16" height="16"
+        fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+      </svg>
+    </button>
+    <a class="btn btn--mini nav__cta" href="#contacto">Reunión de alcance</a>
+    <button class="nav__menu" id="menu-btn" aria-expanded="false" aria-controls="menu-movil">Menú</button>
+  </header>
+
+  <div class="menu-movil" id="menu-movil" hidden>
+    <nav class="menu-movil__nav" aria-label="Menú móvil">
+      <a href="#servicios">Servicios</a>
+      <a href="#plataforma">Plataforma</a>
+      <a href="#colaboraciones">Colaboraciones</a>
+      <a href="#planes">Planes</a>
+      <a href="#metodo">Método</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="menu-movil__pie">
+      <span class="kicker">Primera reunión sin compromiso</span>
+      <a href="mailto:gemiurasolution@gmail.com">gemiurasolution@gmail.com</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero" id="inicio">
+      <div class="hero__fondo" aria-hidden="true">
+        <div class="hero__reticula"></div>
+        <svg class="hero__plano" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+          <g class="plano-trazos" fill="none" stroke-linecap="square">
+            <path class="trazo t1" d="M-20 640 H320 L420 540 H700 L820 660 H1100 L1200 560 H1460"/>
+            <path class="trazo t2" d="M-20 240 H210 L300 330 H560 L640 250 H900 L1010 340 H1460"/>
+            <path class="trazo t3" d="M180 -20 V180 L260 260 V420"/>
+            <path class="trazo t4" d="M1180 920 V700 L1100 620 V380 L1030 310 V-20"/>
+          </g>
+          <g class="plano-corriente" fill="none" stroke-linecap="round" aria-hidden="true">
+            <path class="pulso p1" pathLength="100" d="M-20 640 H320 L420 540 H700 L820 660 H1100 L1200 560 H1460"/>
+            <path class="pulso p2" pathLength="100" d="M-20 240 H210 L300 330 H560 L640 250 H900 L1010 340 H1460"/>
+            <path class="pulso p3" pathLength="100" d="M180 -20 V180 L260 260 V420"/>
+            <path class="pulso p4" pathLength="100" d="M1180 920 V700 L1100 620 V380 L1030 310 V-20"/>
+          </g>
+          <g class="plano-nodos" aria-hidden="true">
+            <circle class="nodo n1" cx="420" cy="540" r="4"/>
+            <circle class="nodo n2" cx="820" cy="660" r="4"/>
+            <circle class="nodo n3" cx="640" cy="250" r="4"/>
+            <circle class="nodo n4" cx="1010" cy="340" r="4"/>
+            <circle class="nodo n5" cx="300" cy="330" r="4"/>
+            <circle class="nodo n6" cx="1100" cy="620" r="4"/>
+            <circle class="onda o1" cx="420" cy="540" r="5"/>
+            <circle class="onda o2" cx="820" cy="660" r="5"/>
+            <circle class="onda o3" cx="640" cy="250" r="5"/>
+            <circle class="onda o4" cx="1010" cy="340" r="5"/>
+            <circle class="onda o5" cx="300" cy="330" r="5"/>
+            <circle class="onda o6" cx="1100" cy="620" r="5"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="hero__contenido">
+        <p class="kicker hero__kicker" data-escena="1">Gemiura — infraestructura, datos y ciberseguridad</p>
+        <h1 class="hero__titulo">
+          <span class="linea" data-escena="2" style="--d:180"><span>La infraestructura</span></span>
+          <span class="linea" data-escena="3" style="--d:300"><span>que no se ve</span></span>
+          <span class="linea" data-escena="4" style="--d:420"><span>es la que no puede</span></span>
+          <span class="linea" data-escena="5" style="--d:540"><span><em class="tachon">fallar</em>.</span></span>
+        </h1>
+        <p class="hero__sub" data-escena="6">
+          Diseñamos, montamos y mantenemos servidores, redes, bases de datos,
+          videovigilancia y software a medida. Una sola interlocución desde el
+          primer cable hasta la revisión del mes siguiente.
+        </p>
+        <div class="hero__acciones" data-escena="7">
+          <a class="btn btn--primario" href="#servicios">Ver servicios</a>
+          <a class="btn fantasma" href="#planes">Calcular un plan</a>
+        </div>
+      </div>
+
+      <div class="hero__lateral">
+        <aside class="hero__motivaciones" data-escena="8" aria-label="Por qué lo hacemos así">
+          <p class="motivaciones__cabecera">Por qué lo hacemos así</p>
+          <h2 class="motivaciones__titulo">No todo se resuelve con una suscripción.</h2>
+          <ul class="motivaciones__lista">
+            <li>
+              <span class="motivaciones__num">01</span>
+              <span class="motivaciones__texto">Cuando ninguna herramienta estándar encaja con el encargo, se construye.</span>
+            </li>
+            <li>
+              <span class="motivaciones__num">02</span>
+              <span class="motivaciones__texto">Todo se despliega dentro de la red del cliente, sin servicios externos.</span>
+            </li>
+            <li>
+              <span class="motivaciones__num">03</span>
+              <span class="motivaciones__texto">Lo que se entrega se puede verificar: no hay que creerlo, está escrito.</span>
+            </li>
+            <li>
+              <span class="motivaciones__num">04</span>
+              <span class="motivaciones__texto">Un solo interlocutor para servidores, datos, vídeo y webs.</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+
+    </section>
+
+
+    <!-- ═══════════ COLABORACIONES · TIRA DE CONFIANZA ═══════════ -->
+    <section class="confianza" aria-labelledby="confianza-titulo">
+      <p class="confianza__label" id="confianza-titulo">Hemos colaborado con</p>
+      <ul class="confianza__marcas">
+        <li data-reveal>Designwest</li>
+        <li data-reveal style="--i:1">HDM</li>
+        <li data-reveal style="--i:2">Surauto <em>Volvo</em></li>
+      </ul>
+      <p class="confianza__nota" data-reveal style="--i:3">Diseño de herramientas digitales y página web para Surauto Volvo.</p>
+    </section>
+
+    <!-- ═══════════ 01 · SERVICIOS ═══════════ -->
+    <section class="servicios" id="servicios">
+      <div class="seccion__marca" data-reveal>
+        <span class="kicker">01 — Servicios</span>
+      </div>
+
+      <div class="servicios__rejilla">
+        <div class="servicios__titulo">
+          <h2 data-reveal>Cinco líneas,<br>un solo<br><em class="tachon">interlocutor</em>.</h2>
+          <p data-reveal style="--i:1">
+            Un único equipo responde de la infraestructura digital completa de su
+            organización: se diseña, se instala, se documenta y se mantiene, y
+            cada entrega deja evidencia de lo hecho.
+          </p>
+          <p class="datos-linea" data-reveal style="--i:2">
+            Los cinco servicios se contratan por separado o como un mantenimiento único.
+          </p>
+        </div>
+
+        <ol class="servicios__lista">
+          <li class="servicio" data-reveal style="--i:1">
+            <button class="servicio__cabecera" aria-expanded="false">
+              <span class="servicio__num">1</span>
+              <span class="servicio__cuerpo">
+                <span class="servicio__nombre">Infraestructura digital</span>
+                <span class="servicio__resumen">Servidores, redes y virtualización, dimensionados para lo que venga, no para hoy.</span>
+              </span>
+              <span class="servicio__mas" aria-hidden="true"></span>
+            </button>
+            <div class="servicio__detalle" hidden>
+              <ul>
+                <li>Diseño del entorno con el crecimiento previsto en dos o tres años.</li>
+                <li>Montaje con pruebas de funcionamiento antes de la entrega.</li>
+                <li>Migraciones planificadas, con verificación de integridad y vuelta atrás.</li>
+                <li>Copias de seguridad con restauración comprobada periódicamente.</li>
+                <li>Inventario, diagrama de red y credenciales: el cliente es dueño de su documentación.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="servicio" data-reveal style="--i:2">
+            <button class="servicio__cabecera" aria-expanded="false">
+              <span class="servicio__num">2</span>
+              <span class="servicio__cuerpo">
+                <span class="servicio__nombre">Bases de datos</span>
+                <span class="servicio__resumen">Instalación correcta, migración sin pérdida y respaldo verificado.</span>
+              </span>
+              <span class="servicio__mas" aria-hidden="true"></span>
+            </button>
+            <div class="servicio__detalle" hidden>
+              <ul>
+                <li>PostgreSQL, MySQL o SQLite: el sistema se elige por el uso, no por costumbre.</li>
+                <li>Migración con verificación antes y después, y corte en ventana acordada.</li>
+                <li>Rendimiento: consultas lentas, índices y parámetros, con informe de lo tocado.</li>
+                <li>Réplicas y conmutación cuando el negocio lo exige.</li>
+                <li>Sesión de transferencia para que la base quede operada por su gente.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="servicio" data-reveal style="--i:3">
+            <button class="servicio__cabecera" aria-expanded="false">
+              <span class="servicio__num">3</span>
+              <span class="servicio__cuerpo">
+                <span class="servicio__nombre">Videovigilancia</span>
+                <span class="servicio__resumen">Cámaras que graban, se revisan y no dependen de la nube de nadie.</span>
+              </span>
+              <span class="servicio__mas" aria-hidden="true"></span>
+            </button>
+            <div class="servicio__detalle" hidden>
+              <ul>
+                <li>Diseño del perímetro en visita: número, ubicación, resolución y visión nocturna.</li>
+                <li>Grabación local, con retención configurada según el uso y la normativa.</li>
+                <li>Acceso remoto autenticado y cifrado, sin exponer el sistema a internet.</li>
+                <li>Revisión periódica de cámaras, grabador y discos.</li>
+                <li>Red de cámaras en VLAN separada, sin competir con la oficina.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="servicio" data-reveal style="--i:4">
+            <button class="servicio__cabecera" aria-expanded="false">
+              <span class="servicio__num">4</span>
+              <span class="servicio__cuerpo">
+                <span class="servicio__nombre">Mantenimiento informático</span>
+                <span class="servicio__resumen">Preventivo y correctivo, con registro de cada intervención.</span>
+              </span>
+              <span class="servicio__mas" aria-hidden="true"></span>
+            </button>
+            <div class="servicio__detalle" hidden>
+              <ul>
+                <li>Parches y actualizaciones en ventana acordada, con comprobación después.</li>
+                <li>Monitorización de disco, red, servicios y cámaras, con aviso al salir del rango.</li>
+                <li>Incidencias con prioridad según plan y registro de cada actuación.</li>
+                <li>Informe periódico: qué se ha hecho, qué se ha detectado, qué conviene prever.</li>
+                <li>Higiene del entorno: usuarios, permisos, copias y espacio con margen.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="servicio" data-reveal style="--i:5">
+            <button class="servicio__cabecera" aria-expanded="false">
+              <span class="servicio__num">5</span>
+              <span class="servicio__cuerpo">
+                <span class="servicio__nombre">Páginas web a medida</span>
+                <span class="servicio__resumen">Diseño propio, sin plantilla; integraciones con lo que ya usa.</span>
+              </span>
+              <span class="servicio__mas" aria-hidden="true"></span>
+            </button>
+            <div class="servicio__detalle" hidden>
+              <ul>
+                <li>Diseño personalizado: tipografía, color y estructura propios del cliente.</li>
+                <li>Integraciones con formularios, CRM, facturación e inventario.</li>
+                <li>Sin CDNs ni dependencias externas: funciona en redes sin salida a internet.</li>
+                <li>Avance por entregas revisables, no en un único despliegue final.</li>
+                <li>Respaldo del código y de los contenidos, con restauración probada.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 · PLATAFORMA ═══════════ -->
+    <section class="plataforma" id="plataforma">
+      <div class="seccion__marca" data-reveal>
+        <span class="kicker">02 — Plataforma propia</span>
+      </div>
+
+      <div class="plataforma__intro">
+        <h2 data-reveal>Herramientas propias,<br><em class="tachon">estado real</em>.</h2>
+        <p data-reveal style="--i:1">
+          Hay tareas que ninguna herramienta estándar hace como al negocio le interesa,
+          y en ese punto se construye. Las tres se despliegan dentro de la red del
+          cliente, sin depender de la nube, y todo lo que producen se puede verificar
+          sin confiar en la palabra de quien lo entregó.
+        </p>
+      </div>
+
+      <div class="fichas">
+
+        <article class="ficha ficha--vf" data-reveal>
+          <header class="ficha__cabecera">
+            <span class="ficha__id">VF—01</span>
+            <span class="insignia insignia--ok"><span class="led led--ok"></span>Operativa</span>
+          </header>
+          <div class="ficha__cuerpo">
+            <div class="ficha__texto">
+              <h3>VulnFlow</h3>
+              <p class="ficha__rol">Orquestación de pentesting</p>
+              <p>
+                Lanza las herramientas de auditoría contra un activo autorizado, guarda
+                la salida completa como evidencia y convierte los hallazgos marcados en
+                un informe Markdown y PDF firmado digitalmente con Ed25519: cualquier
+                modificación posterior se detecta con un comando.
+              </p>
+            </div>
+            <dl class="specs">
+                <div><dt>Catálogo</dt><dd>nmap · gobuster · ffuf · metasploit</dd></div>
+                <div><dt>Ejecución</dt><dd>sin shell, tiempo límite, sin root</dd></div>
+                <div><dt>Informe</dt><dd>Markdown + PDF, firma Ed25519</dd></div>
+                <div><dt>Base de datos</dt><dd>PostgreSQL 16 / SQLite portátil</dd></div>
+                <div><dt>Panel</dt><dd>web propio, sin CDN, sin internet</dd></div></dl>
+          </div>
+        </article>
+
+        <article class="ficha ficha--iv" data-reveal style="--i:1">
+          <header class="ficha__cabecera">
+            <span class="ficha__id">IV—02</span>
+            <span class="insignia insignia--ok"><span class="led led--ok"></span>Operativa</span>
+          </header>
+          <div class="ficha__cuerpo">
+            <div class="ficha__texto">
+              <h3>ironview</h3>
+              <p class="ficha__rol">Gemelo digital industrial</p>
+              <p>
+                El plano de una nave se describe en un fichero JSON y el visor 3D
+                genera la escena proceduralmente: cambiar de nave es cambiar el JSON,
+                no remodelar nada a mano. El simulador, el hardware real y el panel
+                comparten el mismo contrato de mensajería.
+              </p>
+            </div>
+            <dl class="specs">
+                <div><dt>Visor</dt><dd>3D en tiempo real, WebSocket</dd></div>
+                <div><dt>Almacén</dt><dd>WMS con trazabilidad FEFO</dd></div>
+                <div><dt>Alarmas</dt><dd>histéresis, ciclo auditado</dd></div>
+                <div><dt>Auditoría</dt><dd>cadena SHA-256 verificable</dd></div>
+                <div><dt>Despliegue</dt><dd>ejecutable único o Docker + MQTT</dd></div></dl>
+          </div>
+        </article>
+
+        <article class="ficha ficha--ssi" data-reveal style="--i:2">
+          <header class="ficha__cabecera">
+            <span class="ficha__id">SSI—03</span>
+            <span class="insignia insignia--dev"><span class="led led--dev"></span>En desarrollo</span>
+          </header>
+          <div class="ficha__cuerpo">
+            <div class="ficha__texto">
+              <h3>Identidad y acceso</h3>
+              <p class="ficha__rol">Modelo SSI · self-sovereign identity</p>
+              <p>
+                Cada identidad se inscribe en un registro local —sin gas, sin internet,
+                sin criptomonedas—, se revoca de forma verificable y su rol se consulta
+                en la misma fuente de verdad, sin un directorio central que sea punto
+                único de fallo. Prototipo funcional; se ofrece como línea de
+                evaluación, no como producto terminado.
+              </p>
+            </div>
+            <dl class="specs">
+                <div><dt>Registro</dt><dd>DIDs sobre cadena local</dd></div>
+                <div><dt>Revocación</dt><dd>evento permanente en cadena</dd></div>
+                <div><dt>Políticas</dt><dd>RBAC con rotación firmada</dd></div>
+                <div><dt>Agente</dt><dd>validación fuera de cadena</dd></div>
+                <div><dt>Estado</dt><dd>prototipo de evaluación</dd></div></dl>
+          </div>
+        </article>
+
+      </div>
+
+      <aside class="plataforma__nota" data-reveal aria-label="Criterio de entrega">
+        <div class="nota__lado">
+          <span class="nota__marca">N—01</span>
+          <span class="nota__etiqueta">Criterio de entrega</span>
+        </div>
+        <p class="nota__texto">
+          Las herramientas no se venden sueltas: se despliegan cuando el encargo las
+          necesita y dejan un entregable verificable —informes firmados, alarmas
+          auditadas, entornos de evaluación con sus pruebas.
+        </p>
+      </aside>
+    </section>
+
+
+    <!-- ═══════════ 03 · COLABORACIONES ═══════════ -->
+    <section class="colaboraciones" id="colaboraciones">
+      <div class="seccion__marca" data-reveal>
+        <span class="kicker">03 — Colaboraciones</span>
+      </div>
+
+      <div class="colaboraciones__intro">
+        <h2 data-reveal>Parte del trabajo<br>se hace <em class="tachon">en equipo</em>.</h2>
+        <p data-reveal style="--i:1">
+          Además de los encargos que asumimos de principio a fin, hemos colaborado
+          con otros estudios y marcas. Estas son las firmas y el proyecto que
+          forman parte de ese recorrido.
+        </p>
+      </div>
+
+      <div class="colaboraciones__rejilla">
+        <article class="colaborador" data-reveal>
+          <header class="colaborador__cabecera">
+            <span class="colaborador__id">C—01</span>
+            <span class="colaborador__tipo">Colaboración</span>
+          </header>
+          <h3 class="colaborador__nombre">Designwest</h3>
+          <p class="colaborador__glosa">Colaboración.</p>
+        </article>
+
+        <article class="colaborador" data-reveal style="--i:1">
+          <header class="colaborador__cabecera">
+            <span class="colaborador__id">C—02</span>
+            <span class="colaborador__tipo">Colaboración</span>
+          </header>
+          <h3 class="colaborador__nombre">HDM</h3>
+          <p class="colaborador__glosa">Colaboración.</p>
+        </article>
+
+        <article class="colaborador colaborador--destacado" data-reveal style="--i:2">
+          <header class="colaborador__cabecera">
+            <span class="colaborador__id">C—03</span>
+            <span class="colaborador__tipo">Caso</span>
+          </header>
+          <h3 class="colaborador__nombre">Surauto <em>Volvo</em></h3>
+          <p class="colaborador__glosa">Diseño de herramientas digitales y página web.</p>
+          <span class="colaborador__sello">Herramientas digitales · Web</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════ TRANSICIÓN · IMAGEN ═══════════ -->
+    <section class="banda" aria-labelledby="banda-frase">
+      <div class="banda__media" data-reveal aria-hidden="true">
+        <img src="assets/img/banda.webp" alt="" width="2000" height="833" loading="lazy" decoding="async">
+      </div>
+      <div class="banda__contenido">
+        <p class="banda__frase" id="banda-frase" data-reveal>Todo lo que producimos<br>se puede <em class="tachon">verificar</em>.</p>
+        <p class="banda__pie" data-reveal style="--i:1">Informes firmados, alarmas auditadas y documentación que se queda en su organización.</p>
+      </div>
+      <p class="banda__credito" aria-hidden="true">Fig. 02 · Referencia visual</p>
+    </section>
+
+    <!-- ═══════════ 04 · PLANES ═══════════ -->
+    <section class="planes" id="planes">
+      <div class="seccion__marca" data-reveal>
+        <span class="kicker">04 — Planes</span>
+      </div>
+
+      <div class="planes__intro">
+        <h2 data-reveal>Tres bases.<br>Un plan <em class="tachon">a medida</em>.</h2>
+        <p data-reveal style="--i:1">
+          Empiece por un plan definido y ajústelo, o construya el suyo módulo a módulo.
+          El cálculo se actualiza en pantalla con las tarifas a la vista y la propuesta
+          se cierra después de la reunión de alcance. Sin costes ocultos.
+        </p>
+      </div>
+
+      <div class="planes__rejilla">
+        <article class="plan" data-reveal>
+          <header class="plan__cabecera">
+            <span class="plan__id">P—01</span>
+            <span class="plan__etiqueta">Base</span>
+          </header>
+          <div class="plan__cuerpo">
+            <div>
+              <h3 class="plan__nombre">Esencial</h3>
+              <p class="plan__lema">Para empezar con orden</p>
+            </div>
+            <p class="plan__precio"><span>cuota</span>49 €<em>/mes</em></p>
+            <ul class="plan__lista">
+              <li>Presencia web de hasta 5 páginas</li>
+              <li>Dominio, correo y certificados</li>
+              <li>Hosting gestionado y copias semanales</li>
+              <li>Panel de estado y soporte por correo</li>
+            </ul>
+            <button class="btn fantasma plan__cta" type="button" data-base="esencial">Partir de este plan</button>
+          </div>
+        </article>
+
+        <article class="plan plan--destacado" data-reveal style="--i:1">
+          <header class="plan__cabecera">
+            <span class="plan__id">P—02</span>
+            <span class="plan__etiqueta">Equilibrado</span>
+          </header>
+          <div class="plan__cuerpo">
+            <div>
+              <h3 class="plan__nombre">Profesional</h3>
+              <p class="plan__lema">Para operar sin fricción</p>
+            </div>
+            <p class="plan__precio"><span>cuota</span>129 €<em>/mes</em></p>
+            <ul class="plan__lista">
+              <li>Todo lo del plan Esencial</li>
+              <li>Base de datos gestionada y monitorización 24/7</li>
+              <li>Copias diarias con restauración probada</li>
+              <li>Mantenimiento mensual y 2 h de cambios</li>
+              <li>Soporte prioritario</li>
+            </ul>
+            <button class="btn fantasma plan__cta" type="button" data-base="profesional">Partir de este plan</button>
+          </div>
+        </article>
+
+        <article class="plan" data-reveal style="--i:2">
+          <header class="plan__cabecera">
+            <span class="plan__id">P—03</span>
+            <span class="plan__etiqueta">Completo</span>
+          </header>
+          <div class="plan__cuerpo">
+            <div>
+              <h3 class="plan__nombre">Integral</h3>
+              <p class="plan__lema">Para crecer con control</p>
+            </div>
+            <p class="plan__precio"><span>cuota</span>499 €<em>/mes</em></p>
+            <ul class="plan__lista">
+              <li>Todo lo del plan Profesional</li>
+              <li>Auditoría de seguridad anual con informe firmado</li>
+              <li>Videovigilancia (hasta 4 cámaras)</li>
+              <li>Formación al equipo (1 sesión)</li>
+              <li>SLA reforzado, definido en contrato</li>
+            </ul>
+            <button class="btn fantasma plan__cta" type="button" data-base="integral">Partir de este plan</button>
+          </div>
+        </article>
+      </div>
+
+      <p class="planes__nota" data-reveal>
+        Cuotas de referencia sin IVA. La instalación y los trabajos puntuales no se
+        calculan: se presupuestan aparte tras la reunión de alcance, nunca dentro de
+        la misma cuota.
+      </p>
+
+      <div class="planes__puente" data-reveal>
+        <div>
+          <span class="kicker">Plan a medida</span>
+          <h2>Sólo lo que necesita.<br>Con el importe a la vista.</h2>
+        </div>
+        <p>
+          Parta de una base o de cero y añada módulos. La cuota se recalcula al
+          instante; al enviar, la propuesta llega a Gemiura con el método y la franja
+          de reunión que elija.
+        </p>
+      </div>
+
+      <div class="estado-desplegable" id="estado-plataforma" data-desplegable>
+        <button class="estado-desplegable__cabecera" type="button" aria-expanded="false" aria-controls="estado-plataforma-panel">
+          <span class="estado-desplegable__titulo">
+            <span class="kicker">Herramientas propias · estado real</span>
+            <span class="estado-desplegable__resumen">2 operativas · 1 en desarrollo</span>
+          </span>
+          <span class="estado-desplegable__flecha" aria-hidden="true"></span>
+        </button>
+        <div class="estado-desplegable__panel" id="estado-plataforma-panel" hidden>
+          <ul class="estado-desplegable__lista">
+            <li style="--i:0">
+              <span class="estado-desplegable__nombre">VulnFlow</span>
+              <span class="estado-desplegable__punto"><span class="led led--ok"></span>Operativa</span>
+              <span class="estado-desplegable__glosa">Orquestación de pentesting: la salida de las herramientas de auditoría convertida en informe firmado digitalmente.</span>
+            </li>
+            <li style="--i:1">
+              <span class="estado-desplegable__nombre">ironview</span>
+              <span class="estado-desplegable__punto"><span class="led led--ok"></span>Operativa</span>
+              <span class="estado-desplegable__glosa">Gemelo digital industrial en un único ejecutable, funcionando sin internet y hablando por MQTT.</span>
+            </li>
+            <li style="--i:2">
+              <span class="estado-desplegable__nombre">Identidad SSI</span>
+              <span class="estado-desplegable__punto"><span class="led led--dev"></span>En desarrollo</span>
+              <span class="estado-desplegable__glosa">Prototipo local: es alcance a presupuestar, no un producto disponible.</span>
+            </li>
+          </ul>
+          <p class="estado-desplegable__pie">
+            Declarado como está hoy, no como estaría mañana. Las herramientas no se
+            contratan sueltas: se despliegan cuando el encargo las necesita.
+          </p>
+        </div>
+      </div>
+
+      <div class="config" id="configurador" data-reveal>
+        <form class="config__form" id="config-form" data-correo="gemiurasolution@gmail.com" novalidate>
+          <fieldset class="config__bloque">
+            <legend><span class="kicker">1 — Punto de partida</span></legend>
+            <div class="bases">
+              <label class="base-opcion">
+                <input type="radio" name="base" value="esencial">
+                <span class="base-opcion__id">P—01</span>
+                <span class="base-opcion__nombre">Esencial</span>
+                <span class="base-opcion__precio">49 €/mes</span>
+              </label>
+              <label class="base-opcion">
+                <input type="radio" name="base" value="profesional" checked>
+                <span class="base-opcion__id">P—02</span>
+                <span class="base-opcion__nombre">Profesional</span>
+                <span class="base-opcion__precio">129 €/mes</span>
+              </label>
+              <label class="base-opcion">
+                <input type="radio" name="base" value="integral">
+                <span class="base-opcion__id">P—03</span>
+                <span class="base-opcion__nombre">Integral</span>
+                <span class="base-opcion__precio">499 €/mes</span>
+              </label>
+              <label class="base-opcion">
+                <input type="radio" name="base" value="cero">
+                <span class="base-opcion__id">P—00</span>
+                <span class="base-opcion__nombre">Desde cero</span>
+                <span class="base-opcion__precio">Sólo los módulos que elija</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="config__bloque">
+            <legend><span class="kicker">2 — Módulos</span></legend>
+            <div class="modulos">
+              <div class="modulo" data-clave="paginas">
+                <div class="modulo__texto">
+                  <span class="modulo__nombre">Páginas adicionales</span>
+                  <span class="modulo__precio">A presupuesto</span>
+                </div>
+                <div class="pasos" data-pasos>
+                  <button type="button" class="pasos__btn" data-menos aria-label="Quitar una página">-</button>
+                  <input type="number" name="paginas" value="0" min="0" max="20" inputmode="numeric" aria-label="Páginas adicionales">
+                  <button type="button" class="pasos__btn" data-mas aria-label="Añadir una página">+</button>
+                </div>
+              </div>
+
+              <div class="modulo" data-clave="sedes">
+                <div class="modulo__texto">
+                  <span class="modulo__nombre">Sedes o ubicaciones</span>
+                  <span class="modulo__precio">25 €/mes por sede</span>
+                </div>
+                <div class="pasos" data-pasos>
+                  <button type="button" class="pasos__btn" data-menos aria-label="Quitar una sede">-</button>
+                  <input type="number" name="sedes" value="0" min="0" max="10" inputmode="numeric" aria-label="Sedes o ubicaciones">
+                  <button type="button" class="pasos__btn" data-mas aria-label="Añadir una sede">+</button>
+                </div>
+              </div>
+
+              <div class="modulo" data-clave="camaras">
+                <div class="modulo__texto">
+                  <span class="modulo__nombre">Cámaras IP</span>
+                  <span class="modulo__precio">6 €/mes por cámara</span>
+                </div>
+                <div class="pasos" data-pasos>
+                  <button type="button" class="pasos__btn" data-menos aria-label="Quitar una cámara">-</button>
+                  <input type="number" name="camaras" value="0" min="0" max="32" inputmode="numeric" aria-label="Cámaras IP">
+                  <button type="button" class="pasos__btn" data-mas aria-label="Añadir una cámara">+</button>
+                </div>
+              </div>
+
+              <div class="modulo" data-clave="formacion">
+                <div class="modulo__texto">
+                  <span class="modulo__nombre">Sesiones de formación</span>
+                  <span class="modulo__precio">A presupuesto</span>
+                </div>
+                <div class="pasos" data-pasos>
+                  <button type="button" class="pasos__btn" data-menos aria-label="Quitar una sesión">-</button>
+                  <input type="number" name="formacion" value="0" min="0" max="6" inputmode="numeric" aria-label="Sesiones de formación">
+                  <button type="button" class="pasos__btn" data-mas aria-label="Añadir una sesión">+</button>
+                </div>
+              </div>
+
+              <label class="modulo modulo--interruptor" data-clave="copias">
+                <span class="modulo__texto">
+                  <span class="modulo__nombre">Copias de seguridad gestionadas</span>
+                  <span class="modulo__precio">25 €/mes</span>
+                </span>
+                <input type="checkbox" name="copias">
+                <span class="interruptor" aria-hidden="true"></span>
+              </label>
+
+              <label class="modulo modulo--interruptor" data-clave="auditoria">
+                <span class="modulo__texto">
+                  <span class="modulo__nombre">Auditoría de seguridad inicial</span>
+                  <span class="modulo__precio">90 €/mes</span>
+                </span>
+                <input type="checkbox" name="auditoria">
+                <span class="interruptor" aria-hidden="true"></span>
+              </label>
+
+              <label class="modulo modulo--interruptor" data-clave="integracion">
+                <span class="modulo__texto">
+                  <span class="modulo__nombre">Integración con sus sistemas</span>
+                  <span class="modulo__precio">A presupuesto · CRM, ERP o API</span>
+                </span>
+                <input type="checkbox" name="integracion">
+                <span class="interruptor" aria-hidden="true"></span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="config__bloque">
+            <legend><span class="kicker">3 — Prioridad y contrato</span></legend>
+            <div class="config__filas">
+              <div class="config__fila">
+                <span class="config__etiqueta" id="et-prioridad">Prioridad de respuesta</span>
+                <div class="chips" role="radiogroup" aria-labelledby="et-prioridad">
+                  <label class="chip"><input type="radio" name="prioridad" value="normal" checked><span>Normal</span></label>
+                  <label class="chip"><input type="radio" name="prioridad" value="prioritario"><span>Prioritaria</span><em>+20 %</em></label>
+                  <label class="chip"><input type="radio" name="prioridad" value="critico"><span>Crítica</span><em>+40 %</em></label>
+                </div>
+              </div>
+              <div class="config__fila">
+                <span class="config__etiqueta" id="et-contrato">Contrato</span>
+                <div class="chips" role="radiogroup" aria-labelledby="et-contrato">
+                  <label class="chip"><input type="radio" name="contrato" value="mensual" checked><span>Mensual</span></label>
+                  <label class="chip"><input type="radio" name="contrato" value="trimestral"><span>Trimestral</span><em>−5 %</em></label>
+                  <label class="chip"><input type="radio" name="contrato" value="anual"><span>Anual</span><em>−10 %</em></label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="config__bloque">
+            <legend><span class="kicker">4 — Propuesta y reunión</span></legend>
+            <div class="campos">
+              <label class="campo"><span>Nombre y apellidos</span><input type="text" name="nombre" autocomplete="name" required></label>
+              <label class="campo"><span>Empresa</span><input type="text" name="empresa" autocomplete="organization"></label>
+              <label class="campo"><span>Correo electrónico</span><input type="email" name="email" autocomplete="email" required></label>
+              <label class="campo"><span>Teléfono (opcional)</span><input type="tel" name="telefono" autocomplete="tel"></label>
+            </div>
+            <div class="config__filas">
+              <div class="config__fila">
+                <span class="config__etiqueta" id="et-via">Método de reunión</span>
+                <div class="chips" role="radiogroup" aria-labelledby="et-via">
+                  <label class="chip"><input type="radio" name="via" value="llamada" checked><span>Llamada</span></label>
+                  <label class="chip"><input type="radio" name="via" value="videollamada"><span>Videollamada</span></label>
+                  <label class="chip"><input type="radio" name="via" value="mensaje"><span>Mensaje</span></label>
+                </div>
+              </div>
+              <div class="config__fila">
+                <span class="config__etiqueta" id="et-franja">Franja preferida</span>
+                <div class="chips" role="radiogroup" aria-labelledby="et-franja">
+                  <label class="chip"><input type="radio" name="franja" value="manana"><span>Mañana</span><em>9 a 12</em></label>
+                  <label class="chip"><input type="radio" name="franja" value="mediodia"><span>Mediodía</span><em>12 a 15</em></label>
+                  <label class="chip"><input type="radio" name="franja" value="tarde"><span>Tarde</span><em>15 a 18</em></label>
+                  <label class="chip"><input type="radio" name="franja" value="indiferente" checked><span>Indiferente</span></label>
+                </div>
+              </div>
+              <label class="campo campo--ancho"><span>Contexto del proyecto (opcional)</span><textarea name="notas" rows="3" maxlength="600" placeholder="Sistemas actuales, número de personas, plazos, ubicaciones..."></textarea></label>
+            </div>
+          </fieldset>
+        </form>
+
+        <aside class="config__resumen" id="resumen" aria-label="Estimación de la propuesta">
+          <div class="resumen__cabecera">
+            <span class="kicker">Estimación en vivo</span>
+            <span class="resumen__led"><span class="led led--vivo"></span>Auto</span>
+          </div>
+          <div class="resumen__cifras" aria-live="polite" aria-atomic="true">
+            <div class="resumen__cifra">
+              <span>Cuota mensual</span>
+              <strong id="total-mes">—</strong>
+            </div>
+            <div class="resumen__cifra">
+              <span>Equivalente anual</span>
+              <strong id="total-anual">—</strong>
+            </div>
+          </div>
+          <p class="resumen__instalacion">Instalación y trabajos puntuales: <b id="total-instalacion">a presupuesto</b></p>
+          <ul class="resumen__lineas" id="resumen-lineas"></ul>
+          <p class="resumen__reunion" id="resumen-reunion">Reunión: —</p>
+          <p class="resumen__aviso">
+            Tarifas de referencia sin IVA. La propuesta definitiva se emite tras la
+            reunión de alcance y no constituye oferta en firme.
+          </p>
+          <div class="resumen__acciones">
+            <button class="btn btn--primario" type="submit" form="config-form">Enviar propuesta</button>
+            <div class="resumen__secundarias">
+              <button class="btn fantasma" type="button" id="btn-copiar">Copiar</button>
+              <button class="btn fantasma" type="button" id="btn-descargar">Descargar</button>
+              <button class="btn fantasma" type="button" id="btn-imprimir">Imprimir</button>
+            </div>
+          </div>
+          <p class="resumen__estado" id="estado-envio" role="status" aria-live="polite">Se abrirá su cliente de correo con la propuesta lista para enviar.</p>
+          <p class="resumen__sello">Gemiura · cálculo local, sin envío de datos</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 · MÉTODO ═══════════ -->
+    <section class="metodo" id="metodo">
+      <div class="metodo__pin">
+        <h2 class="oculto">Cómo trabajamos</h2>
+        <div class="metodo__cabecera">
+          <span class="kicker">05 — Cómo trabajamos</span>
+          <div class="metodo__progreso" aria-hidden="true"><span id="metodo-progreso"></span></div>
+        </div>
+        <div class="metodo__fantasma" id="metodo-fantasma" aria-hidden="true">1</div>
+        <div class="metodo__pista" id="metodo-pista">
+          <article class="fase" data-fase="1">
+            <span class="fase__num">1</span>
+            <h3>Alcance</h3>
+            <p>Una sesión para entender qué tiene hoy la organización, qué quiere tener y con qué prisa. De aquí sale el perímetro: qué sistemas se tocan y qué queda fuera.</p>
+          </article>
+          <article class="fase" data-fase="2">
+            <span class="fase__num">2</span>
+            <h3>Propuesta</h3>
+            <p>Alcance escrito, entregables de cada fase e importes de referencia. Si aparece algo fuera del alcance, se para y se presupuesta aparte antes de continuar.</p>
+          </article>
+          <article class="fase" data-fase="3">
+            <span class="fase__num">3</span>
+            <h3>Ejecución</h3>
+            <p>El trabajo propiamente dicho, con registro de cada intervención. Ventanas de corte acordadas con antelación y plan de vuelta atrás en cada instalación.</p>
+          </article>
+          <article class="fase" data-fase="4">
+            <span class="fase__num">4</span>
+            <h3>Entrega</h3>
+            <p>Documentación del entorno instalado o del código entregado, comprobación de funcionamiento ante el cliente y devolución de claves y accesos.</p>
+          </article>
+          <article class="fase" data-fase="5">
+            <span class="fase__num">5</span>
+            <h3>Mantenimiento</h3>
+            <p>Si se contrata, el entorno entra en uno de los planes: revisión preventiva, respuesta acordada e informe de estado periódico, por escrito.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 · CONTACTO ═══════════ -->
+    <section class="contacto" id="contacto">
+      <div class="seccion__marca seccion__marca--oscura" data-reveal>
+        <span class="kicker">06 — Contacto</span>
+      </div>
+      <div class="contacto__rejilla">
+        <div class="contacto__izquierda">
+          <h2 data-reveal>Primera reunión<br><em class="tachon">sin compromiso</em>.</h2>
+          <p data-reveal style="--i:1">
+            La reunión de alcance no tiene coste ni compromiso de compra.
+            Cuéntenos qué tiene hoy y qué quiere tener: le respondemos con una
+            propuesta escrita —alcance, entregables, fases e importes de referencia—.
+          </p>
+          <a class="contacto__correo" href="mailto:gemiurasolution@gmail.com" data-reveal style="--i:2">gemiurasolution@gmail.com</a>
+          <p class="contacto__atajo" data-reveal style="--i:3">¿Prefiere ver importes primero? <a href="#planes">Configure un plan en un minuto</a>.</p>
+        </div>
+        <div class="contacto__derecha" data-reveal style="--i:2">
+          <div class="contacto__bloque">
+            <p class="kicker">Siguiente paso</p>
+            <ol class="contacto__pasos">
+              <li><span>01</span>Reunión de alcance</li>
+              <li><span>02</span>Propuesta por escrito</li>
+              <li><span>03</span>Aprobación y arranque</li>
+            </ol>
+          </div>
+          <div class="contacto__bloque">
+            <p class="kicker">Documento completo</p>
+            <a class="contacto__pdf" href="../docs/dist/Gemiura-Documento-maestro.pdf">
+              Catálogo en PDF <span class="contacto__pdf-meta">24 págs · capítulos 01–03</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="pie__rejilla">
+      <div class="pie__marca">
+        <svg viewBox="0 0 120 120" width="34" height="34" aria-hidden="true">
+          <defs>
+            <linearGradient id="gP" x1="8" y1="6" x2="112" y2="116" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#F6B050"/><stop offset="0.48" stop-color="#FC6B00"/><stop offset="1" stop-color="#F6EFE6"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#gP)" d="M60 4 L107 21 C113 23 117 29 117 36 V70 C117 90 96 108 60 116 C24 108 3 90 3 70 V36 C3 29 7 23 13 21 Z"/>
+          <path fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" d="M31 62 L50 80 L89 40"/>
+          <circle cx="89" cy="40" r="9.5" fill="#fff"/><circle cx="89" cy="40" r="4" fill="#241F21"/>
+        </svg>
+        <div>
+          <strong>Gemiura</strong>
+          <span>Infraestructura digital, datos y ciberseguridad</span>
+        </div>
+      </div>
+      <nav class="pie__mapa" aria-label="Pie de página">
+        <a href="#servicios">Servicios</a>
+        <a href="#plataforma">Plataforma</a>
+        <a href="#colaboraciones">Colaboraciones</a>
+        <a href="#planes">Planes</a>
+        <a href="#metodo">Método</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <p class="pie__legal">
+        Los datos técnicos de este sitio proceden de los repositorios propios y de
+        ejecuciones reales. Los niveles de servicio se confirman en el contrato de
+        cada encargo. <span class="pie__aviso">Aviso legal pendiente de redacción.</span>
+        <span class="pie__aviso">Colaboraciones: Designwest · HDM · Surauto Volvo.</span>
+        <span class="pie__aviso">Fotografías de referencia (Wikimedia Commons, CC0); no
+        corresponden a instalaciones de Gemiura.</span>
+      </p>
+    </div>
+    <div class="cajetin" aria-hidden="true">
+      <span class="cajetin__celda cajetin__celda--ancha">Gemiura · web corporativa</span>
+      <span class="cajetin__celda">Plano 01</span>
+      <span class="cajetin__celda">Rev. 2026-10</span>
+      <span class="cajetin__celda">Esc. 1:1</span>
+      <span class="cajetin__celda">Hoja 1/1</span>
+    </div>
+    <div class="pie__base">
+      <span>© <span id="anio">2026</span> Gemiura</span>
+      <span class="pie__marca-texto">Documento comercial · sin oferta en firme</span>
+    </div>
+  </footer>
+
+  <article class="propuesta-impresa" id="propuesta-impresa">
+    <header class="pi__cab">
+      <span class="pi__marca">Gemiura</span>
+      <span class="pi__meta">Propuesta orientativa · documento comercial</span>
+    </header>
+    <h1>Propuesta orientativa</h1>
+    <p class="pi__fecha">Fecha: <span id="pi-fecha"></span></p>
+    <p class="pi__cliente"><strong id="pi-cliente"></strong><br><span id="pi-contacto"></span></p>
+    <h2>Configuración</h2>
+    <ul class="pi__lineas" id="pi-lineas"></ul>
+    <h2>Importes (sin IVA)</h2>
+    <dl class="pi__importes">
+      <div><dt>Cuota mensual</dt><dd id="pi-mes"></dd></div>
+      <div><dt>Equivalente anual (12 meses)</dt><dd id="pi-anual"></dd></div>
+      <div><dt>Instalación y trabajos puntuales</dt><dd>a presupuesto</dd></div>
+    </dl>
+    <h2>Reunión</h2>
+    <p id="pi-reunion"></p>
+    <h2>Contexto</h2>
+    <p id="pi-contexto"></p>
+    <p class="pi__nota">
+      Tarifas de referencia sin IVA. La propuesta definitiva se cierra tras la reunión
+      de alcance y no constituye oferta en firme. Instalación y trabajos puntuales se
+      presupuestan aparte.
+    </p>
+  </article>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
