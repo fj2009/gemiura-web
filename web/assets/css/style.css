@@ -1155,6 +1155,174 @@ body.estatico .tachon::after { transform: scaleX(1); }
   .colaborador, .colaborador--destacado { grid-column: 1 / -1; min-height: 220px; }
 }
 
+/* caso Pase: anuncio en vídeo dentro de la retícula de colaboraciones */
+.pase-caso {
+  position: relative;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: stretch;
+  margin-top: clamp(8px, 1.4vw, 18px);
+  padding: clamp(24px, 3.2vw, 40px);
+  border: 1px solid var(--linea);
+  background: var(--papel-2);
+  overflow: hidden;
+}
+.pase-caso::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--flame);
+}
+.pase-caso__texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding-top: 2px;
+}
+.pase-caso__cabecera {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--mono);
+}
+.pase-caso__id {
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.2em;
+  color: var(--texto-apagado);
+}
+.pase-caso__tipo {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--flame-deep);
+}
+.pase-caso__nombre {
+  margin-top: clamp(26px, 4vw, 52px);
+  font-size: clamp(3rem, 5vw, 5.2rem);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.018em;
+}
+.pase-caso__lema {
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--flame-deep);
+}
+.pase-caso__glosa {
+  margin-top: 22px;
+  max-width: 54ch;
+  color: var(--texto-dim);
+  font-size: 16.5px;
+  line-height: 1.52;
+}
+.pase-caso__lista {
+  list-style: none;
+  width: 100%;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--linea);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px 22px;
+}
+.pase-caso__lista li {
+  position: relative;
+  padding-left: 16px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: var(--texto-apagado);
+}
+.pase-caso__lista li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  background: var(--flame);
+}
+.pase-caso__cta { margin-top: clamp(24px, 3.4vw, 40px); }
+.pase-caso__media {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.pase-caso__marco {
+  position: relative;
+  border: 1px solid var(--linea);
+  background: var(--panel);
+  overflow: hidden;
+}
+.pase-caso__video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #171415;
+}
+.pase-caso__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border: 1px solid rgba(246, 239, 230, 0.42);
+  background: rgba(23, 20, 21, 0.74);
+  color: var(--texto-claro);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+.pase-caso__play:hover {
+  background: var(--flame);
+  border-color: var(--flame);
+  color: var(--tinta);
+}
+.pase-caso__play[hidden] { display: none; }
+.pase-caso__play svg { flex: none; }
+.pase-caso__pie {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-apagado);
+}
+@media (max-width: 900px) {
+  .pase-caso { grid-template-columns: 1fr; gap: 28px; }
+  .pase-caso__media { order: -1; }
+  .pase-caso__texto { padding-top: 0; }
+}
+@media (max-width: 560px) {
+  .pase-caso__lista { grid-template-columns: 1fr; }
+  .pase-caso__pie { flex-direction: column; gap: 4px; }
+}
+
 /* ── transición con imagen ───────────────────────────────────────── */
 .banda {
   --texto: var(--texto-claro);

@@ -251,6 +251,32 @@
     }
   }
 
+  /* ── 8 · vídeo del caso Pase ────────────────────────────────── */
+  const paseVideo = $('#pase-video');
+  if (paseVideo) {
+    const botonPase = $('[data-video-play]');
+    const sincronizarPase = () => {
+      if (botonPase) botonPase.hidden = !paseVideo.paused && !paseVideo.ended;
+    };
+    if (botonPase) {
+      botonPase.addEventListener('click', () => {
+        const intento = paseVideo.play();
+        if (intento && typeof intento.catch === 'function') intento.catch(() => {});
+      });
+    }
+    paseVideo.addEventListener('play', sincronizarPase);
+    paseVideo.addEventListener('pause', sincronizarPase);
+    paseVideo.addEventListener('ended', sincronizarPase);
+    if ('IntersectionObserver' in window) {
+      const vigiaPase = new IntersectionObserver(entradas => {
+        entradas.forEach(e => {
+          if (!e.isIntersecting && !paseVideo.paused) paseVideo.pause();
+        });
+      }, { threshold: 0.2 });
+      vigiaPase.observe(paseVideo);
+    }
+  }
+
   /* ── 9 · planes y configurador ─────────────────────────────── */
   let calcularPlanes = null;
   let propuestaPlanes = null;
