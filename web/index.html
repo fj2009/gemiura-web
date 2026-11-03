@@ -40,7 +40,7 @@
   </script>
   <link rel="preload" href="assets/fonts/darkergrotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/jetbrainsmono-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261103-3">
 </head>
 <body>
 
@@ -475,28 +475,38 @@
         </article>
 
         <article class="pase-caso" data-reveal aria-labelledby="pase-titulo">
+          <header class="pase-caso__cabecera">
+            <span class="pase-caso__id">C—04</span>
+            <span class="pase-caso__tipo">Caso · Producto</span>
+          </header>
+
           <div class="pase-caso__texto">
-            <header class="pase-caso__cabecera">
-              <span class="pase-caso__id">C—04</span>
-              <span class="pase-caso__tipo">Caso · Producto</span>
-            </header>
-            <h3 class="pase-caso__nombre" id="pase-titulo">Pase</h3>
-            <p class="pase-caso__lema">La sala y la cocina, en el mismo pase.</p>
-            <p class="pase-caso__glosa">
-              Carta digital con QR, comandas, pase de cocina y seguimiento del cliente
-              en una sola herramienta. El cliente consulta desde su mesa, sala envía la
-              comanda y cocina trabaja por estaciones; el estado y el tiempo estimado se
-              explican solos.
-            </p>
-            <ul class="pase-caso__lista">
-              <li>Carta QR por mesa, sin instalar nada.</li>
-              <li>Comandas, notas y cuentas desde sala.</li>
-              <li>Cocina por estaciones y orden de salida.</li>
-              <li>Seguimiento privado con tiempo estimado.</li>
-              <li>Impresión térmica con agente local.</li>
-            </ul>
-            <a class="btn fantasma pase-caso__cta" href="mailto:gemiurasolution@gmail.com?subject=Demo%20de%20Pase">Solicitar una demo</a>
+            <div class="pase-caso__intro">
+              <h3 class="pase-caso__nombre" id="pase-titulo">Pase</h3>
+              <p class="pase-caso__lema">La sala y la cocina, en el mismo pase.</p>
+              <p class="pase-caso__glosa">
+                Carta digital con QR, comandas, pase de cocina y seguimiento del cliente
+                en una sola herramienta. El cliente consulta desde su mesa, sala envía la
+                comanda y cocina trabaja por estaciones; el estado y el tiempo estimado se
+                explican solos.
+              </p>
+            </div>
+
+            <div class="pase-caso__detalle">
+              <ul class="pase-caso__lista" aria-label="Funciones de Pase">
+                <li><span class="pase-caso__num">01</span><span>Carta QR por mesa</span></li>
+                <li><span class="pase-caso__num">02</span><span>Comandas y cuentas</span></li>
+                <li><span class="pase-caso__num">03</span><span>Cocina por estaciones</span></li>
+                <li><span class="pase-caso__num">04</span><span>Seguimiento y tiempos</span></li>
+                <li><span class="pase-caso__num">05</span><span>Impresión térmica local</span></li>
+              </ul>
+              <a class="pase-caso__cta" href="mailto:gemiurasolution@gmail.com?subject=Demo%20de%20Pase">
+                <span>Solicitar una demo</span>
+                <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
+
           <figure class="pase-caso__media">
             <div class="pase-caso__marco">
               <video class="pase-caso__video" id="pase-video" poster="assets/video/pase-poster.jpg" preload="none" playsinline controls muted>
@@ -1014,6 +1024,6 @@
     </p>
   </article>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=20261103-3"></script>
 </body>
 </html>
