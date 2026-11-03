@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gemiura — Infraestructura digital, datos y ciberseguridad</title>
   <meta name="description" content="Gemiura diseña, monta y mantiene la infraestructura digital de su organización: servidores, redes, bases de datos, videovigilancia y software a medida, con herramientas de seguridad propias.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="author" content="Gemiura">
+  <link rel="canonical" href="https://fj2009.github.io/gemiura-web/web/">
   <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <meta name="theme-color" content="#f6efe6">
@@ -24,23 +27,76 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Gemiura">
   <meta property="og:locale" content="es_ES">
+  <meta property="og:url" content="https://fj2009.github.io/gemiura-web/web/">
   <meta property="og:title" content="Gemiura — Infraestructura digital, datos y ciberseguridad">
   <meta property="og:description" content="Servidores, redes, bases de datos, videovigilancia y software a medida, con herramientas de seguridad propias y estado declarado sin adornos.">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://fj2009.github.io/gemiura-web/web/assets/img/og-gemiura.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Gemiura — Infraestructura digital, datos y ciberseguridad">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Gemiura — Infraestructura digital, datos y ciberseguridad">
   <meta name="twitter:description" content="Servidores, redes, bases de datos, videovigilancia y software a medida, con herramientas de seguridad propias y estado declarado sin adornos.">
+  <meta name="twitter:image" content="https://fj2009.github.io/gemiura-web/web/assets/img/og-gemiura.png">
+  <meta name="twitter:image:alt" content="Gemiura — Infraestructura digital, datos y ciberseguridad">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Gemiura",
-    "email": "gemiurasolution@gmail.com",
-    "description": "Infraestructura digital, bases de datos, redes, videovigilancia, formación técnica y software a medida, con herramientas de ciberseguridad propias."
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://fj2009.github.io/gemiura-web/web/#organizacion",
+        "name": "Gemiura",
+        "alternateName": "Gemiura Solution",
+        "url": "https://fj2009.github.io/gemiura-web/web/",
+        "logo": "https://fj2009.github.io/gemiura-web/web/assets/img/logo.svg",
+        "image": "https://fj2009.github.io/gemiura-web/web/assets/img/og-gemiura.png",
+        "email": "gemiurasolution@gmail.com",
+        "description": "Infraestructura digital, bases de datos, redes, videovigilancia, formación técnica y software a medida, con herramientas de ciberseguridad propias.",
+        "founder": {
+          "@type": "Person",
+          "name": "Francisco Javier Cardo Carrabeo"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "España"
+        },
+        "knowsAbout": [
+          "Infraestructura digital",
+          "Redes",
+          "Bases de datos",
+          "Ciberseguridad",
+          "Videovigilancia",
+          "Software a medida",
+          "Automatización"
+        ],
+        "sameAs": [
+          "https://github.com/fj2009"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "gemiurasolution@gmail.com",
+          "contactType": "sales",
+          "availableLanguage": ["es"]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://fj2009.github.io/gemiura-web/web/#web",
+        "url": "https://fj2009.github.io/gemiura-web/web/",
+        "name": "Gemiura",
+        "inLanguage": "es",
+        "publisher": {
+          "@id": "https://fj2009.github.io/gemiura-web/web/#organizacion"
+        }
+      }
+    ]
   }
   </script>
   <link rel="preload" href="assets/fonts/darkergrotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/jetbrainsmono-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=20261103-3">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261103-4">
 </head>
 <body>
 
@@ -975,14 +1031,22 @@
         <a href="#metodo">Método</a>
         <a href="#contacto">Contacto</a>
       </nav>
-      <p class="pie__legal">
-        Los datos técnicos de este sitio proceden de los repositorios propios y de
-        ejecuciones reales. Los niveles de servicio se confirman en el contrato de
-        cada encargo. <span class="pie__aviso">Aviso legal pendiente de redacción.</span>
-        <span class="pie__aviso">Colaboraciones: Designwest · HDM · Surauto Volvo · Pase.</span>
-        <span class="pie__aviso">Fotografías de referencia (Wikimedia Commons, CC0); no
-        corresponden a instalaciones de Gemiura.</span>
-      </p>
+      <div class="pie__legal">
+        <p>
+          Los datos técnicos de este sitio proceden de los repositorios propios y de
+          ejecuciones reales. Los niveles de servicio se confirman en el contrato de
+          cada encargo.
+        </p>
+        <p class="pie__aviso">Colaboraciones: Designwest · HDM · Surauto Volvo · Pase.</p>
+        <p class="pie__aviso">Fotografías de referencia (Wikimedia Commons, CC0); no
+        corresponden a instalaciones de Gemiura.</p>
+        <nav class="pie__legal-enlaces" aria-label="Información legal">
+          <a href="legal/aviso-legal.html">Aviso legal</a>
+          <a href="legal/privacidad.html">Privacidad</a>
+          <a href="legal/cookies.html">Cookies</a>
+          <button type="button" data-consent-open>Configurar cookies</button>
+        </nav>
+      </div>
     </div>
     <div class="cajetin" aria-hidden="true">
       <span class="cajetin__celda cajetin__celda--ancha">Gemiura · web corporativa</span>
@@ -1024,6 +1088,7 @@
     </p>
   </article>
 
-  <script src="assets/js/main.js?v=20261103-3"></script>
+  <script src="assets/js/main.js?v=20261103-4"></script>
+  <script src="assets/js/consent.js?v=20261103-4"></script>
 </body>
 </html>

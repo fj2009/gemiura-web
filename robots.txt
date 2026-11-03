@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fj2009.github.io/gemiura-web/sitemap.xml
